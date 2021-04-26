@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "dipy-repro"
+version = "0.1.0"
+description = "isolated reproduction of dipy linux/darwin inconsistency"
+authors = ["Kieran Mann <kieran.mann@o8t.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "3.7.6"
+dipy = "0.16.0"
+numpy = "1.18.4"
+scipy = "1.5.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "6.2.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
