@@ -3,11 +3,9 @@ from dipy.align.imaffine import (
     AffineRegistration,
 )
 
-def get_affine_registration(iters) -> AffineRegistration:
+def get_affine_registration(level_iters) -> AffineRegistration:
     """
     """
-    level_iters = [100, 20, 1] if iters is None else iters
-
     # The number of bins used determines how sensitive the measurement of entropy is to variance in the voxel intensity
     # A small number of bins decreases sensitivity
     n_bins = 128
@@ -20,7 +18,7 @@ def get_affine_registration(iters) -> AffineRegistration:
     factors = [4, 2, 1]
 
     aff_reg = AffineRegistration(
-        metric=metric, level_iters=iters, sigmas=sigmas, factors=factors
+        metric=metric, level_iters=level_iters, sigmas=sigmas, factors=factors
     )
 
     return aff_reg

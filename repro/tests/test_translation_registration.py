@@ -1,4 +1,5 @@
 import pickle
+import logging
 from pathlib import Path
 
 import numpy as np
@@ -17,7 +18,7 @@ TEST_RESOURCE_PATH =  Path(__file__).parent / Path('../test_resources')
 AFFINE_MAP_SNAPSHOT_PATH_INPUT = TEST_RESOURCE_PATH / "new_input_snap.pkl"
 AFFINE_MAP_SNAPSHOT_PATH_OUTPUT = TEST_RESOURCE_PATH / "new_output_snap.pkl"
 
-# logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 def test_affine_map_translation_snapshot():
     assert AFFINE_MAP_SNAPSHOT_PATH_INPUT.exists()
@@ -55,18 +56,15 @@ def test_affine_map_translation_snapshot():
         aff_reg,
     )
 
-    # logger.info(f"Output transformed image: {transformed}")
+    logger.info(f"Output registration affine: {curr_affine}")
 
-    # logger.info(f"Target transformed image: {output_snapshot['transformed']}")
+    logger.info(f"Target registration affine: {output_snapshot['curr_affine']}")
 
     assert np.all(
         np.equal(transformed, output_snapshot["transformed"])
-    ), "Expected transformed image to match target transformed image"
+    ), "Expected transformed image to match target transformed image generated on macOs"
 
-    # logger.info(f"Output registration affine: {curr_affine}")
-
-    # logger.info(f"Target registration affine: {output_snapshot['curr_affine']}")
 
     assert np.all(
         np.equal(curr_affine.affine, output_snapshot["curr_affine"].affine)
-    ), "Expected registration affine to match target registration affine"
+    ), "Expected registration affine to match target registration affine generated on macOs"
